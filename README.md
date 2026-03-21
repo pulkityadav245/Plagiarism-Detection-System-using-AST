@@ -39,5 +39,31 @@ The system contains three main components:
 ### 2. Similarity Detection
 - Computes **cosine similarity** between feature vectors.
 
+## Features (Phase 2)
+- Multi-file upload
+- AST-based comparison
+- Variable normalization
+- Token similarity
+- Hybrid scoring
+
+## How to Run
+
+pip install -r requirements.txt  
+streamlit run app.py
+
+## Approach
+
+1. Convert code → AST
+2. Normalize variable names
+3. Extract tokens
+4. Compute similarity using:
+   - AST similarity (70%)
+   - Token similarity (30%)
+
+## Future Work
+- CFG implementation
+- Machine Learning model
+- Line-level plagiarism detection
+
 ---
 
