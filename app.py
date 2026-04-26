@@ -1,3 +1,7 @@
+
+from enhancement_layer import enhance_results
+
+
 import streamlit as st
 import streamlit.components.v1 as components
 import ast
@@ -13,6 +17,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+
 
 # ── SESSION STATE ─────────────────────────────────────────────────────────────
 if "page" not in st.session_state:
@@ -796,6 +801,7 @@ function toggle(id) {{
         # Calculate height dynamically
         est_height = 200 + len(pairs) * 120 + len(codes) * 80
         components.html(report_html, height=max(est_height, 600), scrolling=True)
+        enhance_results(pairs, filenames, codes)
 
     elif uploaded_files and len(uploaded_files) == 1:
         st.info("Upload at least 2 Python files to run a comparison.")
