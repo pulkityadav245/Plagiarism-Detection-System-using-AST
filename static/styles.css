@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap');
+
+:root {
+    --bg:        #080a0f;
+    --surface:   #0e1218;
+    --card:      #121820;
+    --border:    #1a2230;
+    --border-hi: #263040;
+    --cyan:      #00e5ff;
+    --cyan-glow: rgba(0,229,255,0.15);
+    --amber:     #ffc400;
+    --red:       #ff3d5a;
+    --green:     #00e676;
+    --text:      #c8d6e8;
+    --text-dim:  #4a6080;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body,
+[data-testid="stAppViewContainer"],
+[data-testid="stApp"] {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+    font-family: 'Syne', sans-serif !important;
+}
+
+[data-testid="stHeader"],
+[data-testid="stToolbar"],
+[data-testid="stSidebar"],
+[data-testid="stStatusWidget"],
+footer { display: none !important; }
+
+[data-testid="stMainBlockContainer"] {
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+[data-testid="stMain"] { padding: 0 !important; }
+[data-testid="stVerticalBlock"] { gap: 0 !important; }
+
+/* Kill streamlit default button styles globally, re-theme ours */
+button[kind="primary"], button[kind="secondary"] {
+    font-family: 'Space Mono', monospace !important;
+}
+
+/* File uploader */
+[data-testid="stFileUploader"] {
+    background: var(--surface) !important;
+    border: 1.5px dashed var(--border-hi) !important;
+    border-radius: 10px !important;
+    padding: 1rem !important;
+}
+[data-testid="stFileUploaderDropzone"] {
+    background: transparent !important;
+    border: none !important;
+}
+[data-testid="stFileUploaderDropzone"] > div {
+    color: var(--text-dim) !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 0.75rem !important;
+}
+[data-testid="stFileUploaderDropzone"] button {
+    background: rgba(0,229,255,0.08) !important;
+    border: 1px solid rgba(0,229,255,0.3) !important;
+    color: var(--cyan) !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 0.68rem !important;
+    letter-spacing: 0.1em !important;
+    border-radius: 4px !important;
+    padding: 0.35rem 1rem !important;
+}
+
+/* Alerts */
+[data-testid="stAlert"] {
+    background: rgba(0,229,255,0.05) !important;
+    border: 1px solid rgba(0,229,255,0.15) !important;
+    border-radius: 8px !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 0.75rem !important;
+}
+
+/* Columns gap */
+[data-testid="stHorizontalBlock"] {
+    gap: 1.5rem !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-hi); border-radius: 3px; }
+
+/* Code blocks (for st.code inside app) */
+[data-testid="stCode"] pre {
+    background: #0a0d14 !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 0.7rem !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 6px !important;
+}
+
+/* App page wrapper */
+.app-wrap {
+    padding: 2rem 3rem 5rem;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* Section label */
+.sec-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+.sec-label::after { content:''; flex:1; height:1px; background:var(--border); }
+
+/* Score card */
+.sc {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.2s;
+    cursor: pointer;
+}
+.sc:hover { border-color: var(--border-hi); transform: translateY(-1px); }
+.sc::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+.sc.H::before { background: var(--red); }
+.sc.M::before { background: var(--amber); }
+.sc.L::before { background: var(--green); }
+
+.sc-names { font-family:'Space Mono',monospace; font-size:0.75rem; flex:1; }
+.sc-vs { color:var(--text-dim); font-size:0.6rem; margin:0 0.4em; }
+.sc-bar-wrap { width:160px; height:4px; background:var(--border); border-radius:99px; overflow:hidden; }
+.sc-bar { height:100%; border-radius:99px; }
+.sc.H .sc-bar { background: var(--red); }
+.sc.M .sc-bar { background: var(--amber); }
+.sc.L .sc-bar { background: var(--green); }
+.sc-pct { font-family:'Space Mono',monospace; font-size:1.6rem; font-weight:700; min-width:64px; text-align:right; }
+.sc.H .sc-pct { color: var(--red); }
+.sc.M .sc-pct { color: var(--amber); }
+.sc.L .sc-pct { color: var(--green); }
+.sc-verdict { font-family:'Space Mono',monospace; font-size:0.55rem; letter-spacing:0.15em; text-transform:uppercase; opacity:0.65; margin-top:2px; text-align:right; }
+.sc-right { display:flex; flex-direction:column; align-items:flex-end; }
+
+/* Divider */
+.divider { border:none; border-top:1px solid var(--border); margin:2rem 0; }
+
+/* Back button */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.4rem 0.9rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    transition: color 0.2s, border-color 0.2s;
+    text-transform: uppercase;
+}
+.back-btn:hover { color: var(--cyan); border-color: var(--cyan); }
+

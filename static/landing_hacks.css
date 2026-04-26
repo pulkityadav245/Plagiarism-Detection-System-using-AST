@@ -1,0 +1,19 @@
+/* Make the streamlit button invisible — we use the HTML CTA instead */
+div[data-testid="stButton"] > button {
+    position: fixed !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 1px !important; height: 1px !important;
+}
+
+/* Visible "Enter App" button as fallback below the iframe */
+.enter-btn {
+    display:inline-flex; align-items:center; gap:0.6rem;
+    background:#00e5ff; color:#080a0f;
+    font-family:'Space Mono',monospace; font-weight:700;
+    font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;
+    padding:0.85rem 2rem; border-radius:6px; border:none; cursor:pointer;
+    box-shadow:0 0 30px rgba(0,229,255,0.25);
+    transition:background 0.2s, transform 0.2s;
+}
+.enter-btn:hover { background:#33ecff; transform:translateY(-2px); }
